@@ -2,12 +2,19 @@
 #include "core/window.h"
 #include "core/ui.h"
 
+#include <thread>
+#include <iostream>
+
 const size_t WIDTH = 1000;
 const size_t HEIGHT = 800;
 
 
 int main() {
-    
+
+    while(true){
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::cout << "hey\n";
+    }
 
     //First create an app
     core::App app{};
