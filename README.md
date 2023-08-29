@@ -1,4 +1,4 @@
-# curveEdit
+# oneTri
 
 Application for live-coding fragment shaders.
 
