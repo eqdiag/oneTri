@@ -10,5 +10,5 @@ uniform float time;
 void main()
 {
 	vec2 s = uv * vec2(1.0,aspect);
-	outColor = vec4(uv.x,uv.y*aspect,0.0,0.0);
+	outColor = vec4(mouse,0.0,0.0);
 }

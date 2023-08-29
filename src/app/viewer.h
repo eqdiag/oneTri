@@ -11,7 +11,7 @@
 class Viewer : public core::App {
 public:
 
-	Viewer();
+	Viewer(const char *vertexShader,const char* fragShader);
 	void init() override;
 	void update() override;
 	void render() override;
@@ -19,6 +19,8 @@ public:
 
 	void setTime(float time);
 	void setMousePos(float x,float y);
+	void refreshShader();
+
 
 	//Input state variables
 	bool mViewerOpen;
@@ -26,6 +28,8 @@ public:
 	float mMouseY;
 
 	//Main shader
+	const char* mVertexShader;
+	const char* mFragShader;
 	core::Shader mShader{};
 	std::chrono::steady_clock::time_point mStartTime;
 	GLuint mVAO{};

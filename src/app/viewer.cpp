@@ -6,11 +6,13 @@
 
 #include "app/viewer.h"
 
-Viewer::Viewer():
+Viewer::Viewer(const char* vertexShader,const char* fragShader):
 	App{},
 	mViewerOpen{true},
 	mMouseX{},
 	mMouseY{},
+	mVertexShader{vertexShader},
+	mFragShader{ fragShader },
 	mVAO{0}
 {
 
@@ -22,7 +24,7 @@ void Viewer::init()
 	mStartTime = std::chrono::high_resolution_clock::now();
 
 	//Create graphics assets	
-	mShader.init(SHADER_DIR, "basic.vs", "basic.fs");
+	mShader.init(SHADER_DIR,mVertexShader,mFragShader);
 
 	glGenVertexArrays(1, &mVAO);
 	glBindVertexArray(mVAO);
@@ -63,4 +65,9 @@ void Viewer::setMousePos(float x,float y)
 	float xnorm = x / static_cast<float>(mWindowWidth);
 	float ynorm = 1.0f - (y / static_cast<float>(mWindowHeight));
 	mShader.setUniformFloat2("mouse", xnorm, ynorm);
+}
+
+void Viewer::refreshShader()
+{
+	mShader.rebuild(SHADER_DIR, mVertexShader, mFragShader);
 }

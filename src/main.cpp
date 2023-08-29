@@ -4,28 +4,34 @@
 
 #include "core/settings.h"
 
-#include <thread>
-#include <filesystem>
+#include <memory>
 
 const size_t WIDTH = 1000;
 const size_t HEIGHT = 800;
 
 
-int main() {
+int main(int argc,char * argv[]) {
+
+    std::unique_ptr<Viewer> app;
+
+    if (argc != 2) {
+        app = std::make_unique<Viewer>("basic.vs","basic.fs");
+    }
+    else {
+        app = std::make_unique<Viewer>("basic.vs", argv[2]);
+    }
 
 
-    //First create an app
-    Viewer app{};
 
     //Create a window for rendering the app
-    ViewerWindow window{ app,WIDTH,HEIGHT };
+    ViewerWindow window{ *app,WIDTH,HEIGHT };
 
     //Init the app with graphics resources
-    app.init();
+    app->init();
 
     //Create a ui if you want it, might need access to app state if its a custom ui
     //Ui object by default displays imgui's demo window
-    ViewerUi ui{window,app};
+    ViewerUi ui{window,*app};
 
 
     while (!window.closed()) {
@@ -38,12 +44,12 @@ int main() {
         ui.newFrame();
 
         //Update window
-        window.update(app);
+        window.update(*app);
 
         //Update app state 
-        app.update();
+        app->update();
         //Render app state
-        app.render();
+        app->render();
 
      
         //Update ui state
@@ -57,6 +63,6 @@ int main() {
 
    ui.shutdown();
 
-    return 0;
+   return 0;
 }
 
