@@ -1,8 +1,6 @@
-# curveEdit
+# oneTri
 
 Application for live-coding fragment shaders.
-
-Uses my custom math library: [gMath](https://github.com/eqdiag/gMath)
 
 All dependencies are self-contained in this project using git's submodule system.
 
