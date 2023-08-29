@@ -56,6 +56,48 @@ bool core::Shader::init(const char* shaderDirectory,const char* vertexShaderFile
     return true;
 }
 
+bool core::Shader::rebuild(const char* shaderDirectory, const char* vertexShaderFile, const char* fragmentShaderFile)
+{
+    //First cleanup old resources
+    if (id == -1) return false;
+    glDeleteProgram(id);
+
+
+    std::pair<bool, GLuint> pair = compileShader(shaderDirectory, vertexShaderFile, GL_VERTEX_SHADER);
+
+    if (!pair.first) return false;
+    GLuint vertexShaderId = pair.second;
+    pair = compileShader(shaderDirectory, fragmentShaderFile, GL_FRAGMENT_SHADER);
+    if (!pair.first) return false;
+    GLuint fragShaderId = pair.second;
+
+
+
+    id = glCreateProgram();
+    glAttachShader(id, vertexShaderId);
+    glAttachShader(id, fragShaderId);
+
+    //Optionally specify which framebuffer color output goes to
+    //Do before linking
+    glBindFragDataLocation(id, 0, "outColor");
+
+    glLinkProgram(id);
+
+    int success;
+    glGetProgramiv(id, GL_LINK_STATUS, &success);
+    if (!success) {
+        char buffer[512];
+        glGetProgramInfoLog(id, 512, NULL, buffer);
+        std::cerr << "Error: Couldn't link shaders files (" << vertexShaderFile << "," << fragmentShaderFile << ")" << '\n' << buffer << '\n';
+        return false;
+    }
+
+    glDeleteShader(vertexShaderId);
+    glDeleteShader(fragShaderId);
+
+    return true;
+}
+
 void core::Shader::use()
 {
     glUseProgram(id);

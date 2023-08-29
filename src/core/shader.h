@@ -17,7 +17,11 @@ namespace core {
 		~Shader();
 
 		//Returns true on success, false otherwise
+		//How to initialize a shader object
 		bool init(const char* shaderDirectory, const char* vertexShaderFile, const char* fragmentShaderFile);
+		//Rebuilds shader file in case they change, cleans up old shader gpu resources
+		bool rebuild(const char* shaderDirectory, const char* vertexShaderFile, const char* fragmentShaderFile);
+
 		void use();
 
 		GLuint getId() const;

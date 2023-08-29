@@ -12,6 +12,10 @@ void core::App::render()
 {
 }
 
+void core::App::destroy()
+{
+}
+
 void core::App::setDimensions(int width, int height)
 {
 	mWindowWidth = width;
@@ -26,4 +30,9 @@ int core::App::getWidth() const
 int core::App::getHeight() const
 {
 	return mWindowHeight;
+}
+
+float core::App::getAspectRatio() const
+{
+	return static_cast<float>(mWindowWidth) / static_cast<float>(mWindowHeight);
 }

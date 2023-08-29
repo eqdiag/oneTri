@@ -1,9 +1,11 @@
-﻿#include "core/app.h"
-#include "core/window.h"
-#include "core/ui.h"
+﻿#include "app/viewer.h"
+#include "app/viewer_window.h"
+#include "app/viewer_ui.h"
+
+#include "core/settings.h"
 
 #include <thread>
-#include <iostream>
+#include <filesystem>
 
 const size_t WIDTH = 1000;
 const size_t HEIGHT = 800;
@@ -11,23 +13,19 @@ const size_t HEIGHT = 800;
 
 int main() {
 
-    while(true){
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    std::cout << "hey\n";
-    }
 
     //First create an app
-    core::App app{};
+    Viewer app{};
 
     //Create a window for rendering the app
-    core::Window window{ app ,WIDTH,HEIGHT,"customApp"};
+    ViewerWindow window{ app,WIDTH,HEIGHT };
 
     //Init the app with graphics resources
     app.init();
 
     //Create a ui if you want it, might need access to app state if its a custom ui
     //Ui object by default displays imgui's demo window
-    core::Ui ui{window};
+    ViewerUi ui{window,app};
 
 
     while (!window.closed()) {
