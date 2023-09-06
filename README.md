@@ -26,11 +26,6 @@ cmake ..
   * `ESC` Exit program
 
 
-## Mouse Controls
-  * `leftClick` Adds point to control curve
-  * `rightClick` Removes point from control curve
-  * `mouseScroll` Zoom camera in/out
-
 ## Future Additions
 * Hot reloading shader
                        
