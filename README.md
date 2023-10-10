@@ -21,7 +21,7 @@ cmake ..
   *  `uv` = Coordinates of fragment/pixel normalized to [0,1] range
 
 ## Usage
-For default fragment shader basic.vs run:
+For default fragment shader basic.fs run:
 ```
 ./oneTri
 ```
