@@ -25,6 +25,8 @@ core::Window::Window(
 
     mRawWindow = glfwCreateWindow(width,height, title, nullptr, nullptr); // Windowed    
 
+    std::cout << "Window size = (" << width << ", " << height << ")\n";
+
     app.setDimensions(width, height);
 
     if (!mRawWindow) {

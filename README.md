@@ -35,6 +35,9 @@ For custom fragment shader fragShader.fs run:
   * `R` Reload shader program
   * `ESC` Exit program
 
+## Live Demo
+![Live Demo](/screenshots/demo.gif "Live Demo Example")
+
 
 ## Future Additions
 * Hot reloading shader
