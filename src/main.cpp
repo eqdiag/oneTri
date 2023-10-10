@@ -18,7 +18,7 @@ int main(int argc,char * argv[]) {
         app = std::make_unique<Viewer>("basic.vs","basic.fs");
     }
     else {
-        app = std::make_unique<Viewer>("basic.vs", argv[2]);
+        app = std::make_unique<Viewer>("basic.vs", argv[1]);
     }
 
 
