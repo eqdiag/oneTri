@@ -20,16 +20,16 @@ cmake ..
   *  `time` = Time (measured in seconds) since start of shader program
   *  `uv` = Coordinates of fragment/pixel normalized to [0,1] range
 
+## Usage
+```
+./oneTri fragShader.fs //For custom fragment shader fragShader.fs
+```
+
 ## Keyboard Controls
 
   * `R` Reload shader program
   * `ESC` Exit program
 
-
-## Mouse Controls
-  * `leftClick` Adds point to control curve
-  * `rightClick` Removes point from control curve
-  * `mouseScroll` Zoom camera in/out
 
 ## Future Additions
 * Hot reloading shader
